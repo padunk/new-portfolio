@@ -70,7 +70,7 @@
       videoType: 'webm',
       alt: 'one hundred days tracker app screenshot',
       url: 'http://onehundred-days-tracker.herokuapp.com/',
-      color: '#b794f442'
+      color: '#b794f4'
     },
     {
       title: 'FIFA World Cup 2018',
@@ -83,7 +83,7 @@
       videoType: 'mp4',
       alt: '2018 FIFA World Cup App screenshot',
       url: 'https://world-cup-pwa.firebaseapp.com/',
-      color: '#09538442'
+      color: '#62afd2'
     },
     {
       title: 'Book Markdown Reader',
@@ -95,7 +95,7 @@
       videoType: 'mp4',
       alt: 'book markdown reader app screenshot',
       url: '#',
-      color: '#F0980A42'
+      color: '#ededb4'
     },
     {
       title: 'Reddit Clone',
@@ -108,7 +108,7 @@
       videoType: 'mp4',
       alt: 'reddit clone app screenshot',
       url: 'https://react-redux-readable.web.app/',
-      color: '#02606142'
+      color: '#00ced1'
     },
     {
       title: 'Weather App',
@@ -121,7 +121,7 @@
       videoType: 'mp4',
       alt: 'react weather app screenshot',
       url: 'https://react-weather-api.firebaseapp.com/',
-      color: '#f25c4942'
+      color: '#f25c49'
     },
     {
       title: 'Pomodoro Clock',
@@ -133,10 +133,11 @@
       videoType: 'mp4',
       alt: 'book markdown reader app screenshot',
       url: 'https://codepen.io/padunk/full/awWEPY',
-      color: '#db8c0a42'
+      color: '#db8c0a'
     }
   ];
 
+  let alpha = (+'70').toString(16);
   let xOffset = 100;
   let circleXOffset = 14;
   let idx = 0;
@@ -188,9 +189,7 @@
         lg:absolute lg:block "
       >
         <a href="{project.url}" target="_blank" rel="noreferrer">
-          <h2 style="{`color: ${project.color.slice(0, -2)}`}">
-            {project.title}
-          </h2>
+          <h2 style="{`color: ${project.color}`}">{project.title}</h2>
         </a>
       </section>
       <!-- <div class="w-screen h-screen overflow-hidden">
@@ -227,13 +226,13 @@
     class="rounded-full absolute w-56 h-56 right-0 bottom-0 mr-4 mb-4 text-xs
     z-10 overflow-hidden drop-filter shadow-2xl md:w-64 md:h-64 md:text-sm
     lg:left-0 lg:top-0 lg:mt-32 lg:ml-56"
-    style="{`background-color: ${projectLists[idx].color}`}"
+    style="{`background-color: ${projectLists[idx].color + alpha}`}"
   >
     {#each projectLists as pro, index (pro.title)}
       <div
         class="absolute transition-all duration-500 pt-16 h-full rounded-full
         md:pt-20"
-        style="{`transform: translateX(${(idx - index) * circleXOffset}rem); background-color: ${pro.color}`}"
+        style="{`transform: translateX(${(idx - index) * circleXOffset}rem); background-color: ${pro.color + alpha}`}"
       >
         <div class="block lg:hidden">
           <a href="{pro.url}">
