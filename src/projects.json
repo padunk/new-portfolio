@@ -1,0 +1,113 @@
+[ 
+
+  { 
+
+    "title":"100Days Tracker App",
+    "description":"An application to tracked your #100DaysOfSomething.",
+    "tech":[ 
+
+      "ReactJS",
+      "TypeScript",
+      "Tailwind",
+      "NodeJS",
+      "PostgreSQL"
+    ],
+    "imgPath":"/assets/images/one_hundred_days_tracker",
+    "imgType":"png",
+    "videoPath":"/assets/videos/one_hundred_days_tracker.mp4",
+    "videoType":"mp4",
+    "alt":"one hundred days tracker app screenshot",
+    "url":"http://onehundred-days-tracker.herokuapp.com/",
+    "color":"#b794f4"
+  },
+  { 
+
+    "title":"FIFA World Cup 2018",
+    "description":"An application to show 2018 FIFA World Cup Schedule and Results.",
+    "tech":[ 
+
+      "ReactJS",
+      "CSS",
+      "PWA"
+    ],
+    "imgPath":"/assets/images/2018_fifa_world_cup",
+    "imgType":"png",
+    "videoPath":"/assets/videos/2018_fifa_world_cup.mp4",
+    "videoType":"mp4",
+    "alt":"2018 FIFA World Cup App screenshot",
+    "url":"https://world-cup-pwa.firebaseapp.com/",
+    "color":"#62afd2"
+  },
+  { 
+
+    "title":"Book Markdown Reader",
+    "description":"An application to read book written in markdown in Github.",
+    "tech":[ 
+
+      "ReactJS",
+      "TypeScript",
+      "React Transition Group",
+      "NodeJS"
+    ],
+    "imgPath":"/assets/images/book_markdown_reader",
+    "imgType":"png",
+    "videoPath":"/assets/videos/book_markdown_reader.mp4",
+    "videoType":"mp4",
+    "alt":"book markdown reader app screenshot",
+    "url":"#",
+    "color":"#ededb4"
+  },
+  { 
+
+    "title":"Reddit Clone",
+    "description":"A Reddit clone application made with Redux as State Management",
+    "tech":[ 
+
+      "ReactJS",
+      "Redux",
+      "NodeJS"
+    ],
+    "imgPath":"/assets/images/reddit_clone-update",
+    "imgType":"png",
+    "videoPath":"/assets/videos/reddit_clone-update.mp4",
+    "videoType":"mp4",
+    "alt":"reddit clone app screenshot",
+    "url":"https://react-redux-readable.web.app/",
+    "color":"#00ced1"
+  },
+  { 
+
+    "title":"Weather App",
+    "description":"A weather prediction application for cities around the world",
+    "tech":[ 
+
+      "ReactJS",
+      "Weather API"
+    ],
+    "imgPath":"/assets/images/react_weather_app",
+    "imgType":"png",
+    "videoPath":"/assets/videos/react_weather_app.mp4",
+    "videoType":"mp4",
+    "alt":"react weather app screenshot",
+    "url":"https://react-weather-api.firebaseapp.com/",
+    "color":"#f25c49"
+  },
+  { 
+
+    "title":"Pomodoro Clock",
+    "description":"Simple Pomodoro clock application",
+    "tech":[ 
+
+      "ReactJS",
+      "HTML Canvas",
+      "Codepen"
+    ],
+    "imgPath":"/assets/images/pomodoro_clock",
+    "imgType":"png",
+    "videoPath":"/assets/videos/pomodoro_clock.mp4",
+    "videoType":"mp4",
+    "alt":"book markdown reader app screenshot",
+    "url":"https://codepen.io/padunk/full/awWEPY",
+    "color":"#db8c0a"
+  }
+]
