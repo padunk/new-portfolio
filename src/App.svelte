@@ -7,6 +7,7 @@
   import About from './components/About/About.svelte';
 
   export let url = '';
+  export let projects;
   let name = 'Abraham Anak Agung';
 </script>
 
@@ -15,7 +16,7 @@
   <Navigation />
   <div>
     <Route path="/">
-      <Home {name} />
+      <Home {name} {projects} />
     </Route>
     <Route path="about">
       <About {name} />
