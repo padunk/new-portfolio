@@ -4,6 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
+import json from '@rollup/plugin-json';
 
 import rollup_start_dev from './rollup_start_dev';
 
@@ -50,7 +51,8 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser(),
+		json(),
 	],
 	watch: {
 		clearScreen: false
