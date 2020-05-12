@@ -5,14 +5,11 @@
   }
 
   #video {
-    width: 90vh;
-    height: 90vh;
-    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.2);
     will-change: opacity;
   }
 
   .active {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
   }
@@ -20,15 +17,86 @@
   .video-active {
     opacity: 1;
   }
+
+  .video-container {
+    width: 90vh;
+    height: 90vh;
+    border-width: 15px;
+    will-change: border-color;
+    animation-name: borderColor;
+    animation-duration: 20000ms;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+
+  .video-container::before {
+    content: '';
+    display: block;
+    width: 120vw;
+    height: 120vw;
+    border: 45px solid whitesmoke;
+    border-radius: 50%;
+    position: absolute;
+    top: -5%;
+    z-index: -1;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 50%
+    );
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3) inset;
+  }
+
+  .video-wrapper {
+    width: 80vh;
+    height: 80vh;
+    box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes borderColor {
+    0% {
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+    20% {
+      border-color: rgba(255, 0, 0, 0.8);
+    }
+    30% {
+      border-color: rgba(255, 120, 0, 0.8);
+    }
+    40% {
+      border-color: rgba(255, 255, 0, 0.8);
+    }
+    50% {
+      border-color: rgba(0, 255, 0, 0.8);
+    }
+    60% {
+      border-color: rgba(0, 255, 120, 0.8);
+    }
+    70% {
+      border-color: rgba(0, 0, 255, 0.8);
+    }
+    80% {
+      border-color: rgba(120, 0, 255, 0.8);
+    }
+    90% {
+      border-color: rgba(255, 0, 255, 0.8);
+    }
+    100% {
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+  }
 </style>
 
 <script>
   import { onMount, beforeUpdate } from 'svelte';
+  import normalizeWheel from 'normalize-wheel';
 
   export let name;
   export let projects;
 
-  let alpha = (+'70').toString(16);
+  let isFirefox = navigator.userAgent.includes('Firefox');
+  let alpha = isFirefox ? '' : (+'70').toString(16);
   let xOffset = 100;
   let circleXOffset = 14;
   let idx = 0;
@@ -53,12 +121,13 @@
   }
 
   function handleWheel(event) {
-    if (event.deltaY > 0) {
+    const { pixelY } = normalizeWheel(event);
+    if (pixelY >= 20) {
       if (idx === projects.length - 1) return;
       idx += 1;
     }
 
-    if (event.deltaY < 0) {
+    if (pixelY <= -20) {
       if (idx === 0) return;
       idx -= 1;
     }
@@ -85,8 +154,8 @@
 
   function handleMouseOut(event) {
     videoPlay = false;
-    video.src = '';
     video.pause();
+    video.src = '';
   }
 </script>
 
@@ -148,24 +217,33 @@
     {/each}
   </section>
   <div
-    class="w-screen h-screen absolute z-20 flex items-center transition-all
-    duration-200"
+    class="hidden w-screen h-screen absolute z-20 flex items-center
+    transition-all duration-200 lg:block"
     class:active="{videoPlay}"
   >
-    <video
-      class="object-scale-down rounded-full ml-64 shadow-2xl bg-gray-800
-      opacity-0 transition-opacity duration-200"
+    <div
+      class="flex justify-center items-center rounded-full border-dotted mt-8
+      ml-48 opacity-0 transition-opacity duration-200 bg-gray-200
+      video-container"
       class:video-active="{videoPlay}"
-      id="video"
-      autoplay
-      muted
-      loop
-      preload="none"
-      type="video/mp4"
-      bind:this="{video}"
     >
-      Your browser don't support video.
-    </video>
+      <div
+        class="rounded-full overflow-hidden flex justify-center bg-gray-900
+        video-wrapper"
+      >
+        <video
+          id="video"
+          autoplay
+          muted
+          loop
+          preload="none"
+          type="video/mp4"
+          bind:this="{video}"
+        >
+          Your browser don't support video.
+        </video>
+      </div>
+    </div>
   </div>
   {#each projects as project, i (project.title)}
     <section
