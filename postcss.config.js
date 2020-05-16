@@ -8,6 +8,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
 
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
 });
+const autoprefixer = require('autoprefixer');
 
 const production = !process.env.ROLLUP_WATCH
 
