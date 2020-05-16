@@ -5,11 +5,11 @@
   .right-nav::after {
     content: '';
     width: 10vw;
-    height: 2px;
+    height: 4px;
     border-radius: 5px;
     position: absolute;
     top: 0;
-    background-color: #222;
+    background-color: chartreuse;
     transition: 600ms;
   }
   .left-nav::before {
@@ -45,21 +45,48 @@
 </style>
 
 <script>
-  import { links } from 'svelte-routing';
+  import NavLink from './NavLink.svelte';
+  const leftPath = [
+    { to: '/', pathName: 'Home' },
+    { to: '/all', pathName: 'All Projects' }
+  ];
+  const rightPath = [
+    { to: '/', pathName: 'Close' },
+    { to: '/about', pathName: 'About' }
+  ];
 </script>
 
-<nav use:links class="flex h-16 justify-between items-center z-50 fixed w-screen">
+<nav
+  class="flex h-16 justify-between items-center z-50 fixed w-screen text-red-400"
+>
   <span class="left-nav relative left-2">
     <div class="flex flex-row relative">
-      <a href="/" class="absolute top-min-full">Home</a>
-      <a href="/all" class="relative">All projects</a>
-      <span class="absolute top-full">Close</span>
+      <!-- <span class="absolute top-min-full">
+        <NavLink to="/">Home</NavLink>
+      </span>
+
+      <span class="relative">
+        <NavLink to="/all">All projects</NavLink>
+      </span>
+
+      <NavLink to="/">
+        <span class="relative">Close</span>
+      </NavLink> -->
+      <NavLink toGroups="{leftPath}" />
+
     </div>
   </span>
   <span class="right-nav relative right-2">
     <div class="flex flex-row relative">
-      <a href="/about" class="relative">About</a>
-      <span class="absolute top-full">Close</span>
+
+      <!-- <span class="relative">
+        <NavLink to="/about">About</NavLink>
+      </span>
+
+      <NavLink to="/">
+        <span class="relative">Close</span>
+      </NavLink> -->
+      <NavLink toGroups="{rightPath}" />
     </div>
   </span>
 </nav>

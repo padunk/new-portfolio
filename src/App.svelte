@@ -1,25 +1,20 @@
 <script>
-  import { Router, Link, Route } from 'svelte-routing';
+  import { Router, Route } from 'svelte-routing';
   import Tailwindcss from './Tailwindcss.svelte';
+  import { fly, fade } from 'svelte/transition';
 
   import Navigation from './components/Navigation/Navigation.svelte';
   import Home from './components/Home/Home.svelte';
   import About from './components/About/About.svelte';
 
-  export let url = '';
   export let projects;
   let name = 'Abraham Anak Agung';
 </script>
 
-<Router {url}>
+<Router>
   <Tailwindcss />
   <Navigation />
-  <div>
-    <Route path="/">
-      <Home {name} {projects} />
-    </Route>
-    <Route path="about">
-      <About {name} />
-    </Route>
-  </div>
+  <Route path="/" component="{Home}" {name} {projects} />
+  <Route path="about" component="{About}" {name} />
+
 </Router>
