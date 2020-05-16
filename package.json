@@ -29,6 +29,7 @@
     "tailwindcss": "^1.1.3"
   },
   "dependencies": {
+    "capture-website": "^1.0.0",
     "classnames": "^2.2.6",
     "normalize-wheel": "^1.0.1",
     "sirv-cli": "^0.4.4"
