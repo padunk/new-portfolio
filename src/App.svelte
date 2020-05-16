@@ -6,6 +6,7 @@
   import Navigation from './components/Navigation/Navigation.svelte';
   import Home from './components/Home/Home.svelte';
   import About from './components/About/About.svelte';
+  import AllProjects from './components/AllProjects/AllProjects.svelte';
 
   export let projects;
   let name = 'Abraham Anak Agung';
@@ -16,5 +17,5 @@
   <Navigation />
   <Route path="/" component="{Home}" {name} {projects} />
   <Route path="about" component="{About}" {name} />
-
+  <Route path="all" component="{AllProjects}" />
 </Router>
