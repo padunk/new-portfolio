@@ -6,12 +6,12 @@
   import Navigation from './components/Navigation/Navigation.svelte';
   import Home from './components/Home/Home.svelte';
   import About from './components/About/About.svelte';
-  import AllProjects from './components/AllProjects/AllProjects.svelte';
+  import OtherProjects from './components/OtherProjects/OtherProjects.svelte';
   import PageTransition from './PageTransition.svelte';
 
   export let projects;
+  export let otherProjects;
   let name = 'Abraham Anak Agung';
-  
 </script>
 
 <Router>
@@ -27,9 +27,9 @@
       <About {name} />
     </PageTransition>
   </Route>
-  <Route path="all">
+  <Route path="other">
     <PageTransition>
-      <AllProjects />
+      <OtherProjects others="{otherProjects}" />
     </PageTransition>
   </Route>
 </Router>

@@ -48,7 +48,7 @@
   import NavLink from './NavLink.svelte';
   const leftPath = [
     { to: '/', pathName: 'Home' },
-    { to: '/all', pathName: 'All Projects' }
+    { to: '/other', pathName: 'Other Projects' }
   ];
   const rightPath = [
     { to: '/', pathName: 'Close' },

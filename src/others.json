@@ -1,0 +1,65 @@
+[ 
+  { 
+    "title":"Mail Archiver",
+    "description":"An e-mail dashboard application.",
+    "tech":[ 
+      "ReactJS",
+      "Tailwind"
+    ],
+    "imgPath":"/assets/images/mail_archiver-mobile",
+    "imgType":"png",
+    "alt":"mail archiver app screenshot",
+    "url":"#",
+    "color":"hsl(0, 0%, 50%)"
+  },
+  { 
+    "title":"Covid-19 Data Visualization",
+    "description":"An e-mail dashboard application.",
+    "tech":[ 
+      "JavaScript",
+      "D3"
+    ],
+    "imgPath":"/assets/images/covid19_data_vis",
+    "imgType":"png",
+    "alt":"covid19 data visualization app screenshot",
+    "url":"https://covid19-data-vis.surge.sh/",
+    "color":"rgb(20,30,40)"
+  },
+  { 
+    "title":"Create App Now",
+    "description":"A cli to create basic web projects",
+    "tech":[ 
+      "JavaScript"
+    ],
+    "imgPath":"/assets/images/create_app_now",
+    "imgType":"png",
+    "alt":"create app now NPM package screenshot",
+    "url":"https://www.npmjs.com/package/create-app-now",
+    "color":"orangered"
+  },
+  { 
+    "title":"FCC Projects",
+    "description":"FreeCodeCamp projects collections",
+    "tech":[ 
+      "JavaScript",
+      "ReactJS"
+    ],
+    "imgPath":"/assets/images/fcc_collections",
+    "imgType":"png",
+    "alt":"free code camp projects collection screenshot",
+    "url":"https://codepen.io/collection/nZazzz",
+    "color":"green"
+  },
+  { 
+    "title":"JS#30 Projects",
+    "description":"Projects from Wes Bos JS#30 Tutorial",
+    "tech":[ 
+      "JavaScript"
+    ],
+    "imgPath":"/assets/images/javascript_30_collections",
+    "imgType":"png",
+    "alt":"javascript 30 projects collection screenshot",
+    "url":"https://codepen.io/collection/DrMNeB",
+    "color":"gold"
+  }
+]
