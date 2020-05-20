@@ -4,10 +4,6 @@
     -webkit-backdrop-filter: blur(90px);
   }
 
-  #video {
-    will-change: opacity;
-  }
-
   .active {
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(30px);
@@ -216,9 +212,11 @@
       </div>
     {/each}
   </section>
+  <!-- why the class directive is creating a bug here? class:active="{videoPlay}" -->
   <div
     class="hidden w-screen h-screen absolute z-20 flex items-center
-    transition-all duration-200 lg:block"
+    transition-all duration-200 lg:block opacity-0"
+    class:video-active="{videoPlay}"
     class:active="{videoPlay}"
   >
     <div
@@ -232,7 +230,6 @@
         video-wrapper"
       >
         <video
-          id="video"
           autoplay
           muted
           loop
