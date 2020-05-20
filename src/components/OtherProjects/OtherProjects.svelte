@@ -95,48 +95,40 @@
   });
 
   function setImageAndTitle(isFront, idx) {
+    const titleString = `
+      <a href="${others[idx].url}" target="_blank" rel="noopener noreferrer">
+        <h3 class="pl-4 border-red-500 border-l-4">
+          <p>${others[idx].title.split(' ')[0]}</p>
+          <p>${others[idx].title
+            .split(' ')
+            .slice(1)
+            .join(' ')}</p>
+        </h3>
+      </a>
+    `;
+
     if (!isFront) {
       backElement.forEach(
         back =>
           (back.style.backgroundImage = `url(${others[idx].imgPath}.${others[idx].imgType})`)
       );
 
-      backTitle = `
-        <a href="${others[idx].url}" target="_blank" rel="noopener noreferrer">
-          <h3 class="pl-4 border-red-500 border-l-4">
-            <p>${others[idx].title.split(' ')[0]}</p>
-            <p>${others[idx].title
-              .split(' ')
-              .slice(1)
-              .join(' ')}</p>
-          </h3>
-        </a>
-      `;
+      backTitle = titleString;
     } else {
       frontElement.forEach(
         front =>
           (front.style.backgroundImage = `url(${others[idx].imgPath}.${others[idx].imgType})`)
       );
 
-      frontTitle = `
-        <a href="${others[idx].url}" target="_blank" rel="noopener noreferrer">
-          <h3 class="pl-4 border-red-500 border-l-4">
-            <p>${others[idx].title.split(' ')[0]}</p>
-            <p>${others[idx].title
-              .split(' ')
-              .slice(1)
-              .join(' ')}</p>
-          </h3>
-        </a>
-      `;
+      frontTitle = titleString;
     }
   }
 
-  function nextProject(event) {
+  function handleProjectSlide(event, type) {
     const len = others.length;
     let imageIndex;
     isShowingFront = !isShowingFront;
-    projectIndex += 1;
+    projectIndex = type === 'next' ? projectIndex + 1 : projectIndex - 1;
 
     if (projectIndex < 0) {
       imageIndex = Math.abs(len + projectIndex) % len;
@@ -145,26 +137,7 @@
     }
     setImageAndTitle(isShowingFront, imageIndex);
 
-    rotation += rotateDeg;
-    flipperElement.forEach(flip => {
-      flip.style.transform = `rotateY(${rotation}deg)`;
-    });
-  }
-
-  function prevProject(event) {
-    const len = others.length;
-    let imageIndex;
-    isShowingFront = !isShowingFront;
-    projectIndex -= 1;
-
-    if (projectIndex < 0) {
-      imageIndex = Math.abs(len + projectIndex) % len;
-    } else {
-      imageIndex = projectIndex % len;
-    }
-    setImageAndTitle(isShowingFront, imageIndex);
-
-    rotation -= rotateDeg;
+    rotation = type === 'next' ? rotation + rotateDeg : rotation - rotateDeg;
     flipperElement.forEach(flip => {
       flip.style.transform = `rotateY(${rotation}deg)`;
     });
@@ -209,7 +182,10 @@
   </div>
 
   <div class="absolute controls">
-    <div class="w-20 h-20 mb-2 chevron" on:click="{nextProject}">
+    <div
+      class="w-20 h-20 mb-2 chevron"
+      on:click="{e => handleProjectSlide(e, 'next')}"
+    >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <polyline
           points="184 112 328 256 184 400"
@@ -218,7 +194,10 @@
       </svg>
     </div>
 
-    <div class="w-20 h-20 chevron" on:click="{prevProject}">
+    <div
+      class="w-20 h-20 chevron"
+      on:click="{e => handleProjectSlide(e, 'prev')}"
+    >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <polyline
           points="328 112 184 256 328 400"
