@@ -3,11 +3,10 @@
   import Tailwindcss from './Tailwindcss.svelte';
   import { fly, fade } from 'svelte/transition';
 
-  import Navigation from './components/Navigation/Navigation.svelte';
+  import NewNavigation from './components/Navigation/NewNavigation.svelte';
   import Home from './components/Home/Home.svelte';
   import About from './components/About/About.svelte';
   import OtherProjects from './components/OtherProjects/OtherProjects.svelte';
-  import PageTransition from './PageTransition.svelte';
 
   export let projects;
   export let otherProjects;
@@ -16,20 +15,14 @@
 
 <Router>
   <Tailwindcss />
-  <Navigation />
+  <NewNavigation />
   <Route path="/">
-    <PageTransition>
-      <Home {name} {projects} />
-    </PageTransition>
+    <Home {name} {projects} />
   </Route>
   <Route path="about">
-    <PageTransition>
-      <About {name} />
-    </PageTransition>
+    <About {name} />
   </Route>
   <Route path="other">
-    <PageTransition>
-      <OtherProjects others="{otherProjects}" />
-    </PageTransition>
+    <OtherProjects others="{otherProjects}" />
   </Route>
 </Router>
