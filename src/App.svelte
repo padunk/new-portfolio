@@ -1,28 +1,41 @@
 <script>
-  import { Router, Route } from 'svelte-routing';
+  import { onMount } from 'svelte';
+  import { tweened } from 'svelte/motion';
+  import Preload from 'preload-it';
   import Tailwindcss from './Tailwindcss.svelte';
-  import { fly, fade } from 'svelte/transition';
-
-  import NewNavigation from './components/Navigation/NewNavigation.svelte';
-  import Home from './components/Home/Home.svelte';
-  import About from './components/About/About.svelte';
-  import OtherProjects from './components/OtherProjects/OtherProjects.svelte';
+  import Routes from './Routes.svelte';
+  import Loading from './components/Loading/Loading.svelte';
 
   export let projects;
   export let otherProjects;
-  let name = 'Abraham Anak Agung';
+
+  let completeLoadingAssets = false;
+  const loadingProgress = tweened(0, { duration: 400 });
+  const allAssets = [];
+  projects.forEach(project => {
+    allAssets.push(project.imgPath + '.' + project.imgType, project.videoPath);
+  });
+  otherProjects.forEach(project => {
+    allAssets.push(project.imgPath + '.' + project.imgType);
+  });
+
+  const preload = Preload();
+  onMount(() => {
+    preload.fetch(allAssets);
+
+    preload.oncomplete = items => {
+      completeLoadingAssets = true;
+    };
+
+    preload.onprogress = event => {
+      loadingProgress.set(event.progress);
+    };
+  });
 </script>
 
-<Router>
-  <Tailwindcss />
-  <NewNavigation />
-  <Route path="/">
-    <Home {name} {projects} />
-  </Route>
-  <Route path="about">
-    <About {name} />
-  </Route>
-  <Route path="other">
-    <OtherProjects others="{otherProjects}" />
-  </Route>
-</Router>
+<Tailwindcss />
+{#if completeLoadingAssets}
+  <Routes {projects} {otherProjects} />
+{:else}
+  <Loading {loadingProgress} />
+{/if}
