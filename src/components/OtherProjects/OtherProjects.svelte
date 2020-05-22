@@ -72,6 +72,7 @@
 
 <script>
   import { onMount } from 'svelte';
+  import { gsap } from 'gsap';
 
   export let others;
   const children = Array.from({ length: 81 }, (_, i) => i);
@@ -92,6 +93,22 @@
     backElement = document.querySelectorAll('.back');
 
     setImageAndTitle(isShowingFront, projectIndex);
+
+    gsap.set('.invisible', { autoAlpha: 1 });
+    gsap
+      .timeline()
+      .from('.mr-screen', {
+        yPercent: -120,
+        duration: 4,
+        delay: 0.5,
+        ease: 'expo.out'
+      })
+      .from('.title', { opacity: 0, rotateY: 180, duration: 1 }, '-=2.5')
+      .from(
+        '.chevron',
+        { opacity: 0, xPercent: 100, duration: 0.8, stagger: 0.3 },
+        '<0.5'
+      );
   });
 
   function setImageAndTitle(isFront, idx) {
@@ -146,7 +163,7 @@
 
 <div
   class="bg-black text-white flex justify-center items-center min-h-screen
-  min-w-full"
+  min-w-full invisible"
 >
   <div
     class="absolute inset-0 w-screen h-screen overflow-hidden background-video"
