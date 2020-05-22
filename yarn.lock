@@ -841,6 +841,11 @@ graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
+gsap@^3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.2.6.tgz#fbaddab30c8c2fb029d61ef56f667b42f99c932f"
+  integrity sha512-QX7WQWZUAooS9tOCYg4kKLcnjBreA4Xyu11EVx6zp4BbKijnMK+NtzkB47las/E0luFE84hGscOZm5vd13KzZA==
+
 has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
@@ -1435,6 +1440,11 @@ postcss@^7.0.11, postcss@^7.0.14, postcss@^7.0.18, postcss@^7.0.21, postcss@^7.0
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
+
+preload-it@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/preload-it/-/preload-it-1.4.0.tgz#39dd789e136e33b23ffd8421e23f55bebb6cdeef"
+  integrity sha512-eajVQ5/peLtsUU4TjYz3xmL/hDnMVs5BMjl3Pv6/d9uDy8ztpCE8iI3yNjXxmIR+8y2YJGaOvrpIadUdVxFzsg==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
