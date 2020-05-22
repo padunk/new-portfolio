@@ -87,6 +87,7 @@
 <script>
   import { onMount, beforeUpdate } from 'svelte';
   import normalizeWheel from 'normalize-wheel';
+  import { gsap } from 'gsap';
 
   export let name;
   export let projects;
@@ -99,6 +100,26 @@
 
   onMount(async () => {
     handleResize();
+
+    gsap
+      .timeline()
+      .from('main', {
+        y: 1000,
+        duration: 2,
+        immediateRender: false
+      })
+      .from(
+        '.image-container',
+        {
+          x: 0,
+          duration: 1,
+          stagger: -0.25,
+          ease: 'circ.in'
+        },
+        '-=0.1'
+      )
+      .from('.title', { opacity: 0 }, '-=0.2')
+      .from('.description', { opacity: 0, duration: 1 });
   });
 
   beforeUpdate(async () => {
@@ -161,7 +182,8 @@
 <main class=" w-screen h-screen relative">
   {#each projects as project, i (project.title)}
     <div
-      class="w-screen h-screen absolute inset-0 transition-all duration-1000"
+      class="w-screen h-screen absolute inset-0 transition-all duration-1000
+      image-container"
       style="{`transform: translateX(${(idx - i) * xOffset}vw)`}"
     >
       <picture>
@@ -188,7 +210,7 @@
   <section
     class="rounded-full absolute w-56 h-56 right-0 bottom-0 mr-4 mb-4 text-xs
     z-10 overflow-hidden drop-filter shadow-2xl md:w-64 md:h-64 md:text-sm
-    lg:left-0 lg:top-0 lg:mt-32 lg:ml-56"
+    lg:left-0 lg:top-0 lg:mt-32 lg:ml-56 description"
     style="{`background-color: ${projects[idx].color + alpha}`}"
   >
     {#each projects as pro, index (pro.title)}
@@ -245,7 +267,7 @@
   {#each projects as project, i (project.title)}
     <section
       class="hidden bottom-0 right-0 mr-16 mb-16 text-white text-5xl italic z-50
-      lg:absolute lg:block transition-all duration-1000"
+      lg:absolute lg:block transition-all duration-1000 title"
       style="{`transform: translateX(${(idx - i) * xOffset}vw)`}"
     >
       <a href="{project.url}" target="_blank" rel="noreferrer">
