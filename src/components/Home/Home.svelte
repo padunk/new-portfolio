@@ -101,6 +101,7 @@
   onMount(async () => {
     handleResize();
 
+    gsap.set('.invisible', { autoAlpha: 1 });
     gsap
       .timeline()
       .from('main', {
@@ -179,7 +180,7 @@
 <svelte:window on:wheel="{handleWheel}" on:resize="{handleResize}" />
 
 <h1 class="hidden">{name}</h1>
-<main class=" w-screen h-screen relative">
+<main class=" w-screen h-screen relative invisible">
   {#each projects as project, i (project.title)}
     <div
       class="w-screen h-screen absolute inset-0 transition-all duration-1000
@@ -237,13 +238,13 @@
   <!-- why the class directive is creating a bug here? class:active="{videoPlay}" -->
   <div
     class="hidden w-screen h-screen absolute z-20 flex items-center
-    transition-all duration-200 lg:block opacity-0"
+    transition-all duration-200 lg:block opacity-0 delay-300"
     class:video-active="{videoPlay}"
     class:active="{videoPlay}"
   >
     <div
       class="flex justify-center items-center rounded-full border-dotted mt-8
-      ml-48 opacity-0 transition-opacity duration-200 bg-gray-200
+      ml-48 opacity-0 transition-opacity duration-200 delay-300 bg-gray-200
       video-container"
       class:video-active="{videoPlay}"
     >
