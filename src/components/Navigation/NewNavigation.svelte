@@ -115,8 +115,13 @@
   }
 </script>
 
-<div class="absolute">
-  <input type="checkbox" class="hidden" id="nav-toggle" bind:this={toggleNav} />
+<div class="absolute navigation">
+  <input
+    type="checkbox"
+    class="hidden"
+    id="nav-toggle"
+    bind:this="{toggleNav}"
+  />
 
   <label for="nav-toggle" class="nav-button">
     <div class="nav-icon top"></div>
@@ -128,8 +133,10 @@
     <video preload="metadata" autoplay loop muted class="nav-video">
       <source src="/assets/videos/video.mp4" type="video/mp4" />
     </video>
-    <a on:click={handleToggleNavMenu} class="nav-link" href="/">HOME</a>
-    <a on:click={handleToggleNavMenu} class="nav-link" href="/about">About</a>
-    <a on:click={handleToggleNavMenu} class="nav-link" href="/other">Other Projects</a>
+    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/">HOME</a>
+    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/about">About</a>
+    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/other">
+      Other Projects
+    </a>
   </nav>
 </div>
