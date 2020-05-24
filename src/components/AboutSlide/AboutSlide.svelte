@@ -22,37 +22,6 @@
     }
   }
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-flow: dense;
-    gap: 5px;
-  }
-
-  .grid-container > li {
-    height: 70px;
-    color: linen;
-    overflow-wrap: anywhere;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .bg {
-    background-image: url('https://images.unsplash.com/photo-1530819568329-97653eafbbfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=746&q=80');
-    background-size: contain;
-    background-attachment: fixed;
-    height: 100%;
-    width: 100%;
-    filter: blur(3px);
-    position: absolute;
-    z-index: -1;
-  }
-
-  .grid-container > li:last-child {
-    grid-column: 2 / -1;
-  }
-
   .cert-link:link,
   .cert-link:visited {
     color: #a0aec0;
@@ -67,6 +36,7 @@
 </style>
 
 <script>
+  import { onMount } from 'svelte';
   import { fade, fly } from 'svelte/transition';
   import { expoOut } from 'svelte/easing';
 
@@ -74,17 +44,17 @@
   import ArrowLeft from '../Arrow/ArrowLeft.svelte';
 
   const stacks = [
-    'HTML',
-    'CSS',
-    'JS',
-    'React',
-    'React Native',
-    'Redux',
-    'NodeJS',
-    'MongoDB',
-    'PostgreSQL',
-    'TypeScript',
-    'SASS'
+    ['HTML', 'https://whatwg.org/'],
+    ['CSS', 'https://developer.mozilla.org/en-US/docs/Web/CSS'],
+    ['JS', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'],
+    ['React', 'https://reactjs.org/'],
+    ['ReactNative', 'https://reactnative.dev/'],
+    ['Redux', 'https://redux.js.org/'],
+    ['NodeJS', 'https://nodejs.org/en/'],
+    ['MongoDB', 'https://www.mongodb.com/'],
+    ['PostgreSQL', 'https://www.postgresql.org/'],
+    ['TypeScript', 'https://www.typescriptlang.org/'],
+    ['SASS', 'https://sass-lang.com/']
   ];
 
   const certs = [
@@ -106,6 +76,21 @@
 
   function prevSlide(event) {
     slideNo -= 1;
+  }
+
+  let linkBG;
+  let showLinkScreenshot = false;
+  function showStackBG(event) {
+    const basePath = '/assets/images/sites/';
+    const imgPath = event.target.dataset.stack + '.jpeg';
+
+    showLinkScreenshot = true;
+    linkBG = `url(${basePath}${imgPath})`;
+  }
+
+  function hideStackBG(event) {
+    linkBG = '';
+    showLinkScreenshot = false;
   }
 </script>
 
@@ -140,14 +125,34 @@
     <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
       <div class="w-4/5 max-w-lg flex flex-col">
         <h2 class="mb-2 font-bold">My web stacks:</h2>
-        <ul class="mb-2 grid-container">
-          {#each stacks as stack}
-            <li>
-              <div class="bg"></div>
-              {stack}
-            </li>
-          {/each}
-        </ul>
+        <div class="flex">
+          <ul class="mb-2 mr-8">
+            {#each stacks as [name, url]}
+              <li
+                class="my-stack hover:text-white transition-colors duration-300"
+              >
+                <a
+                  href="{url}"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  on:mouseover="{showStackBG}"
+                  on:mouseout="{hideStackBG}"
+                  data-stack="{name}"
+                >
+                  {name}
+                </a>
+              </li>
+            {/each}
+          </ul>
+          {#if showLinkScreenshot}
+            <div
+              in:fly="{{ y: 500, duration: 1000 }}"
+              out:fly="{{ x: 1000, opacity: 0, duration: 500 }}"
+              class="bg-no-repeat bg-contain w-full shadow-2xl rounded-md bg-white"
+              style="background-image: {linkBG}"
+            ></div>
+          {/if}
+        </div>
         <div class="flex justify-between w-full">
           <ArrowLeft
             on:click="{prevSlide}"
