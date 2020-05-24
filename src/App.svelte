@@ -5,12 +5,13 @@
   import Tailwindcss from './Tailwindcss.svelte';
   import Routes from './Routes.svelte';
   import Loading from './components/Loading/Loading.svelte';
+  import { loadingProgress } from './stores.js';
 
   export let projects;
   export let otherProjects;
 
   let completeLoadingAssets = false;
-  const loadingProgress = tweened(0, { duration: 400 });
+
   const allAssets = [];
   projects.forEach(project => {
     allAssets.push(project.imgPath + '.' + project.imgType, project.videoPath);
@@ -20,7 +21,7 @@
   });
 
   const preload = Preload();
-  onMount(() => {
+  onMount(async () => {
     preload.fetch(allAssets);
 
     preload.oncomplete = items => {
@@ -37,5 +38,5 @@
 {#if completeLoadingAssets}
   <Routes {projects} {otherProjects} />
 {:else}
-  <Loading {loadingProgress} />
+  <Loading />
 {/if}
