@@ -23,7 +23,7 @@
   className += ' arrow-right';
 </script>
 
-<div class="{className}" on:click>
+<div class="{className} cursor-pointer" on:click>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <polyline
       points="268 112 412 256 268 400"
