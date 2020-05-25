@@ -68,7 +68,7 @@
   const flyIn = { x: 500, delay: 550, duration: 1500, easing: expoOut };
   const fadeOut = { duration: 500 };
   const sectionClass =
-    'h-full flex flex-col justify-center pl-12 pr-10 transition-all text-sm sm:text-md sm:pl-16 md:pl-20 lg:text-lg';
+    'h-full flex flex-col justify-center pl-12 pr-10 transition-all sm:pl-16 md:pl-20 lg:text-lg';
 
   function nextSlide(event) {
     slideNo += 1;
@@ -78,8 +78,9 @@
     slideNo -= 1;
   }
 
-  let linkBG;
+  let linkBG = '';
   let showLinkScreenshot = false;
+
   function showStackBG(event) {
     const basePath = '/assets/images/sites/';
     const imgPath = event.target.dataset.stack + '.jpeg';
@@ -101,7 +102,7 @@
   {#if slideNo === 0}
     <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
       <div class="w-4/5 max-w-lg flex flex-col">
-        <h2 class="sm:whitespace-pre-line">
+        <h2 class="sm:whitespace-pre-line lg:text-lg" style="font-size: 1rem;">
           I'm a self-taught web developer lived in Indonesia. I started coding
           at age of 14 with BASIC in middle school, but I never learn it
           afterwards. I started fall in
@@ -123,14 +124,12 @@
     </section>
   {:else if slideNo === 1}
     <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
-      <div class="w-4/5 max-w-lg flex flex-col">
+      <div class="sm:w-4/5 max-w-lg flex flex-col">
         <h2 class="mb-2 font-bold">My web stacks:</h2>
         <div class="flex">
-          <ul class="mb-2 mr-8">
+          <ul class="mb-2 lg:mr-8">
             {#each stacks as [name, url]}
-              <li
-                class="my-stack hover:text-white transition-colors duration-300"
-              >
+              <li class="my-stack">
                 <a
                   href="{url}"
                   target="_blank"
@@ -138,6 +137,8 @@
                   on:mouseover="{showStackBG}"
                   on:mouseout="{hideStackBG}"
                   data-stack="{name}"
+                  class="text-gray-500 hover:text-white transition-colors
+                  duration-300"
                 >
                   {name}
                 </a>
@@ -146,9 +147,9 @@
           </ul>
           {#if showLinkScreenshot}
             <div
-              in:fly="{{ y: 500, duration: 1000 }}"
-              out:fly="{{ x: 1000, opacity: 0, duration: 500 }}"
-              class="bg-no-repeat bg-contain w-full shadow-2xl rounded-md bg-white"
+              in:fly="{{ y: 500, duration: 1000, delay: 50 }}"
+              out:fly="{{ x: 1000, opacity: 0, duration: 500, delay: 50 }}"
+              class="w-full h-auto bg-contain bg-no-repeat bg-center"
               style="background-image: {linkBG}"
             ></div>
           {/if}
@@ -181,8 +182,9 @@
         <ul class="list-disc list-inside mb-2">
           {#each certs as cert}
             <li>
-              {cert.course} by
-              <span class="font-semibold text-gray-100">{cert.org}</span>
+              <span class="font-semibold text-gray-100">{cert.course}</span>
+              by
+              <em>{cert.org}</em>
             </li>
           {/each}
         </ul>

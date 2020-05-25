@@ -11,8 +11,6 @@
     padding: 1px;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.8);
-    height: 80px;
-    width: 80px;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transition: transform 250ms;
   }
@@ -23,7 +21,6 @@
 
   .nav-icon {
     height: 2px;
-    width: 30px;
     background-color: black;
     transition: transform 300ms, opacity 600ms;
   }
@@ -35,7 +32,6 @@
   .middle {
     margin-top: 10px;
     height: 4px;
-    width: 60px;
     background-color: crimson;
   }
 
@@ -68,30 +64,17 @@
   }
 
   .nav-video {
-    width: 100vw;
     filter: blur(5px) invert(1);
   }
 
   .nav-link {
     font-family: 'Oswald', sans-serif;
-    font-size: 5rem;
     color: white;
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-    letter-spacing: -5px;
     line-height: 5rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -70%);
-  }
-
-  .nav-link:nth-child(2) {
-    margin-top: -150px;
-  }
-
-  .nav-link:nth-child(3) {
-    margin-top: 150px;
   }
 
   .nav-link:hover {
@@ -123,20 +106,47 @@
     bind:this="{toggleNav}"
   />
 
-  <label for="nav-toggle" class="nav-button">
-    <div class="nav-icon top"></div>
-    <div class="nav-icon middle"></div>
-    <div class="nav-icon bottom"></div>
+  <label for="nav-toggle" class="nav-button w-10 h-10">
+    <div class="nav-icon w-4 top"></div>
+    <div class="nav-icon w-8 middle"></div>
+    <div class="nav-icon w-4 bottom"></div>
   </label>
 
   <nav class="nav-container" use:links>
-    <video preload="metadata" autoplay loop muted class="nav-video">
-      <source src="/assets/videos/video.mp4" type="video/mp4" />
+    <video
+      preload="metadata"
+      autoplay
+      loop
+      muted
+      class="nav-video min-w-full h-full object-cover"
+    >
+      <source
+        src="https://res.cloudinary.com/padunk/video/upload/v1590331906/my_portfolio/video.mp4"
+        type="video/mp4"
+      />
     </video>
-    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/">HOME</a>
-    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/about">About</a>
-    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/other">
+    <a
+      on:click="{handleToggleNavMenu}"
+      class="nav-link uppercase text-3xl -mt-16 sm:text-4xl lg:text-6xl
+      lg:-mt-24"
+      href="/"
+    >
+      HOME
+    </a>
+    <a
+      on:click="{handleToggleNavMenu}"
+      class="nav-link uppercase text-3xl whitespace-no-wrap sm:text-4xl
+      lg:text-6xl"
+      href="/other"
+    >
       Other Projects
+    </a>
+    <a
+      on:click="{handleToggleNavMenu}"
+      class="nav-link uppercase text-3xl mt-16 sm:text-4xl lg:text-6xl lg:mt-24"
+      href="/about"
+    >
+      About
     </a>
   </nav>
 </div>

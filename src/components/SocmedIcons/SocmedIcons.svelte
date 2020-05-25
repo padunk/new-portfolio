@@ -31,7 +31,7 @@
 </script>
 
 <div
-  class="w-full flex flex-col items-center pl-16 max-w-3xl sm:flex-row
+  class="w-full flex flex-col items-center pl-16 sm:w-4/5 max-w-3xl sm:flex-row
   sm:justify-around sm:pl-0 sm:pr-16 md:pt-24 md:relative md:z-10"
 >
   <div class="{svgWrapperClass}">

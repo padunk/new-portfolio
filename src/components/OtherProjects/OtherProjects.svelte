@@ -4,17 +4,35 @@
   }
 
   .mr-screen {
-    height: 90vh;
-    width: 90vh;
+    height: 45vh;
+    width: 45vh;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
-    gap: 5px;
+    gap: 3px;
     overflow: hidden;
     position: relative;
     z-index: 10;
     background-color: black;
-    box-shadow: 0 0 0 10px black, 0 0 0 40px hsla(0, 0%, 80%, 0.7);
+    box-shadow: 0 0 0 6px black, 0 0 0 25px hsla(0, 0%, 80%, 0.7);
+  }
+
+  @media only screen and (min-width: 640px) {
+    .mr-screen {
+      height: 60vh;
+      width: 60vh;
+      gap: 5px;
+      box-shadow: 0 0 0 10px black, 0 0 0 40px hsla(0, 0%, 80%, 0.7);
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .mr-screen {
+      height: 90vh;
+      width: 90vh;
+      gap: 5px;
+      box-shadow: 0 0 0 10px black, 0 0 0 40px hsla(0, 0%, 80%, 0.7);
+    }
   }
 
   .wrapper {
@@ -49,10 +67,8 @@
   .title {
     font-family: 'Oswald', sans-serif;
     height: 50%;
-  }
-
-  .controls {
-    right: 20%;
+    border-style: none;
+    border-left: 4px solid #f56565;
   }
 
   .controls > div {
@@ -113,10 +129,12 @@
 
   function setImageAndTitle(isFront, idx) {
     const titleString = `
-      <a href="${others[idx].url}" target="_blank" rel="noopener noreferrer">
-        <h3 class="pl-4 border-red-500 border-l-4">
-          <p>${others[idx].title.split(' ')[0]}</p>
-          <p>${others[idx].title
+      <a href="${
+        others[idx].url
+      }" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-white transition-colors duration-300">
+        <h3 class="pl-4">
+          <p class='m-0 leading-tight'>${others[idx].title.split(' ')[0]}</p>
+          <p class='m-0 leading-tight'>${others[idx].title
             .split(' ')
             .slice(1)
             .join(' ')}</p>
@@ -168,13 +186,12 @@
   <div
     class="absolute inset-0 w-screen h-screen overflow-hidden background-video"
   >
-    <video autoplay muted loop>
+    <video autoplay muted loop class="w-full h-full object-cover">
       <!-- <source src="/media/examples/flower.webm" type="video/webm" /> -->
-      <source src="/assets/videos/Pexels Videos 2421545.mp4" type="video/mp4" />
-      Sorry, your browser doesn't support embedded videos.
+      <source src="https://res.cloudinary.com/padunk/video/upload/v1590378881/my_portfolio/Pexels_Videos_2421545_fncd7j.mp4" type="video/mp4" />
     </video>
   </div>
-  <div class="rounded-full mr-screen">
+  <div class="rounded-full -mt-16 mr-screen lg:mt-0">
     {#each children as child, i}
       <div class="w-full h-full wrapper">
         <div class="w-full h-full relative flipper">
@@ -185,7 +202,10 @@
     {/each}
   </div>
 
-  <div class="absolute left-0 bottom-0 text-5xl flex mb-4 title">
+  <div
+    class="absolute left-0 bottom-0 text-3xl flex title -mb-24 lg:mb-4
+    lg:text-5xl"
+  >
     <div class="w-full h-full wrapper">
       <div class="w-full h-full relative flipper">
         <div class="absolute inset-0 w-full h-full front z-10">
@@ -198,9 +218,12 @@
     </div>
   </div>
 
-  <div class="absolute controls">
+  <div
+    class="absolute bottom-0 right-0 mb-32 flex flex-row-reverse controls
+    sm:mb-24 sm:mr-8 lg:block lg:mb-48 lg:mr-16 lg:right-0"
+  >
     <div
-      class="w-20 h-20 mb-2 chevron"
+      class="w-10 h-10 lg:w-20 lg:h-20 mb-2 chevron"
       on:click="{e => handleProjectSlide(e, 'next')}"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -212,7 +235,7 @@
     </div>
 
     <div
-      class="w-20 h-20 chevron"
+      class="w-10 h-10 lg:w-20 lg:h-20 chevron"
       on:click="{e => handleProjectSlide(e, 'prev')}"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

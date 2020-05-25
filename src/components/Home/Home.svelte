@@ -113,7 +113,6 @@
         '.image-container',
         {
           x: 0,
-          duration: 1,
           stagger: -0.25,
           ease: 'circ.in'
         },
@@ -267,11 +266,11 @@
   </div>
   {#each projects as project, i (project.title)}
     <section
-      class="hidden bottom-0 right-0 mr-16 mb-16 text-white text-5xl italic z-50
+      class="hidden bottom-0 right-0 mr-16 mb-16 text-white text-4xl italic z-50
       lg:absolute lg:block transition-all duration-1000 title"
       style="{`transform: translateX(${(idx - i) * xOffset}vw)`}"
     >
-      <a href="{project.url}" target="_blank" rel="noreferrer">
+      <a href="{project.url}" target="_blank" rel="noreferrer noopener">
         <h2
           style="{`color: ${project.color}`}"
           on:mouseover="{handleMouseOver}"
