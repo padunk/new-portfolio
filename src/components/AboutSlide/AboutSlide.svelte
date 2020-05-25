@@ -102,7 +102,7 @@
   {#if slideNo === 0}
     <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
       <div class="w-4/5 max-w-lg flex flex-col">
-        <h2 class="sm:whitespace-pre-line lg:text-lg" style="font-size: 1rem;">
+        <h2 class="lg:text-lg" style="font-size: 1rem;">
           I'm a self-taught web developer lived in Indonesia. I started coding
           at age of 14 with BASIC in middle school, but I never learn it
           afterwards. I started fall in
