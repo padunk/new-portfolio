@@ -2,24 +2,31 @@
   @tailwind base;
   html,
   body {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    @apply relative w-full h-full;
   }
   body {
-    padding: 0;
-    overflow: hidden;
-    color: #333;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+    @apply p-0 overflow-hidden m-0 bg-black box-border;
   }
 
-  @tailwind components;
-  .active {
-    display: none;
-    opacity: 0;
+  blockquote,
+  dl,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  figure,
+  p,
+  pre {
+    @apply m-0;
   }
-  
+
+  a {
+    @apply no-underline;
+  }
+  @tailwind components;
+
   @tailwind utilities;
 </style>

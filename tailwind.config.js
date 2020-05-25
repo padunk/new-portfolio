@@ -1,6 +1,8 @@
 module.exports = {
   theme: {
-    extend: {},
+    fontFamily: {
+      body: ['Lato', 'Oswald', 'sans-serif']
+    },
     inset: {
       '0': 0,
       '2': '2rem',
@@ -9,6 +11,7 @@ module.exports = {
       'min-full': '-100%'
     }
   },
-  variants: {},
-  plugins: []
+  corePlugins: {
+    preflight: false,
+  }
 }
