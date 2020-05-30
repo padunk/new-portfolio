@@ -13,8 +13,6 @@
   let completeLoadingAssets = false;
 
   const allAssets = [
-    'https://res.cloudinary.com/padunk/video/upload/v1590378881/my_portfolio/Pexels_Videos_2421545_fncd7j.mp4',
-    'https://res.cloudinary.com/padunk/video/upload/v1590331906/my_portfolio/video.mp4',
     'https://res.cloudinary.com/padunk/video/upload/v1590378846/my_portfolio/book_markdown_reader_ncnhij.mp4',
     'https://res.cloudinary.com/padunk/video/upload/v1590378827/my_portfolio/one_hundred_days_tracker_nmamjc.mp4',
     'https://res.cloudinary.com/padunk/video/upload/v1590378825/my_portfolio/reddit_clone-update_wsjttd.mp4',
@@ -23,7 +21,7 @@
     'https://res.cloudinary.com/padunk/video/upload/v1590378815/my_portfolio/pomodoro_clock_upjlgj.mp4'
   ];
   projects.forEach(project => {
-    allAssets.push(project.imgPath + '.' + project.imgType/*, project.videoPath*/);
+    allAssets.push(project.imgPath + '.' + project.imgType, /* project.videoPath*/);
   });
   otherProjects.forEach(project => {
     allAssets.push(project.imgPath + '.' + project.imgType);
@@ -44,8 +42,10 @@
 </script>
 
 <Tailwindcss />
-{#if completeLoadingAssets}
-  <Routes {projects} {otherProjects} />
-{:else}
-  <Loading />
-{/if}
+<main class="overflow-hidden overflow-x-hidden overflow-y-hidden relative">
+  {#if completeLoadingAssets}
+    <Routes {projects} {otherProjects} />
+  {:else}
+    <Loading />
+  {/if}
+</main>
