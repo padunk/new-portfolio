@@ -57,9 +57,7 @@
   const loadingText = `Working on it...`.split('');
 
   onMount(() => {
-    gsap.set('.invisible', { autoAlpha: 1 });
-
-    gsap.timeline().from('.loading-letter', {
+    gsap.from('.loading-letter', {
       stagger: {
         each: 0.25,
         ease: 'power1.out'
@@ -70,7 +68,7 @@
   });
 </script>
 
-<div class="w-screen h-screen bg-red-700 invisible">
+<div class="w-screen h-screen bg-red-700">
   <div class="pt-10 mb-16 font-bold text-center text-xl uppercase">
     <p>
       {#each loadingText as letter}
