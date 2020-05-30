@@ -10,8 +10,5 @@ module.exports = {
       'full': '100%',
       'min-full': '-100%'
     }
-  },
-  corePlugins: {
-    preflight: false,
   }
 }
