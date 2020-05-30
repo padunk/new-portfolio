@@ -16,7 +16,16 @@
   .about-detail:hover,
   .about-detail:active {
     transform: translateX(20%);
-    padding-left: 40px;
+    padding-left: 70px;
+  }
+
+  .section-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.75rem;
+    padding-right: 50px;
   }
 
   .cert-link:link,
@@ -42,6 +51,10 @@
     .about-detail {
       transform: translateX(90%);
       padding-left: 10%;
+    }
+
+    .section-wrapper {
+      font-size: 1.5rem;
     }
   }
 </style>
@@ -78,8 +91,6 @@
   let slideNo = 0;
   const flyIn = { x: 500, delay: 550, duration: 1500, easing: expoOut };
   const fadeOut = { duration: 500 };
-  const sectionClass =
-    'h-full flex flex-col justify-center lg:text-lg';
 
   function nextSlide(event) {
     slideNo += 1;
@@ -108,9 +119,9 @@
 
 <div class="bg-red-800 text-gray-500 about-detail">
   {#if slideNo === 0}
-    <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
+    <section in:fly="{flyIn}" out:fade="{fadeOut}" class="section-wrapper">
       <div class="w-4/5 max-w-lg flex flex-col">
-        <h2 class="lg:text-lg" style="font-size: 1rem;">
+        <h2>
           I'm a self-taught web developer lived in Indonesia. I started coding
           at age of 14 with BASIC in middle school, but I never learn it
           afterwards. I started fall in
@@ -131,7 +142,7 @@
       </div>
     </section>
   {:else if slideNo === 1}
-    <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
+    <section in:fly="{flyIn}" out:fade="{fadeOut}" class="section-wrapper">
       <div class="w-4/5 max-w-md">
         <h2 class="mb-2 font-bold">My web stacks:</h2>
         <div class="flex">
@@ -175,7 +186,7 @@
       </div>
     </section>
   {:else}
-    <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
+    <section in:fly="{flyIn}" out:fade="{fadeOut}" class="section-wrapper">
       <div class="w-4/5 max-w-lg flex flex-col">
         <h2 class="mb-2 font-bold">
           <a

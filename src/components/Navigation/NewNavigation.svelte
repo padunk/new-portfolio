@@ -1,4 +1,10 @@
 <style>
+  .navigator {
+    width: 70px;
+    height: 70px;
+    top: 0;
+  }
+
   .nav-button {
     position: fixed;
     top: 20px;
@@ -122,7 +128,7 @@
   }
 </script>
 
-<div class="absolute navigation overflow-hidden">
+<div class="absolute navigator">
   <input
     type="checkbox"
     class="hidden"

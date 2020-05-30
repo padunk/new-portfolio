@@ -278,7 +278,7 @@
 
   <div class="controls">
     <div
-      class="w-10 h-10 md:w-16 md:h-16 chevron prev"
+      class="w-10 h-10 md:w-16 md:h-16 chevron prev mb-2"
       on:click="{e => handleProjectSlide(e, 'prev')}"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -289,7 +289,7 @@
       </svg>
     </div>
     <div
-      class="w-10 h-10 md:w-16 md:h-16 mb-2 chevron next"
+      class="w-10 h-10 md:w-16 md:h-16 chevron next"
       on:click="{e => handleProjectSlide(e, 'next')}"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
