@@ -20,6 +20,6 @@
     <About {name} />
   </Route>
   <Route path="other">
-    <OtherProjects others="{otherProjects}" />
+    <OtherProjects {otherProjects} />
   </Route>
 </Router>
