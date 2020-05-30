@@ -107,22 +107,18 @@
       .from('main', {
         y: 1000,
         duration: 2,
-        immediateRender: false
+        delay: 0.75
       })
-      .from(
-        '.image-container',
-        {
-          x: 0,
-          stagger: -0.25,
-          ease: 'circ.in'
-        },
-        '-=0.1'
-      )
+      .from('.image-container', {
+        x: 0,
+        stagger: -0.25,
+        ease: 'circ.in'
+      })
       .from('.title', { opacity: 0 }, '-=0.2')
       .from('.description', { opacity: 0, duration: 1 });
   });
 
-  beforeUpdate(async () => {
+  beforeUpdate(() => {
     handleResize();
   });
 
@@ -179,7 +175,7 @@
 <svelte:window on:wheel="{handleWheel}" on:resize="{handleResize}" />
 
 <h1 class="hidden">{name}</h1>
-<main class=" w-screen h-screen relative invisible">
+<section class=" w-screen h-screen relative invisible">
   {#each projects as project, i (project.title)}
     <div
       class="w-screen h-screen absolute inset-0 transition-all duration-1000
@@ -282,4 +278,4 @@
       </a>
     </section>
   {/each}
-</main>
+</section>
