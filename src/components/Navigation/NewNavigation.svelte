@@ -59,32 +59,56 @@
     position: relative;
     z-index: 80;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     transform: scale(0);
+    background: linear-gradient(100deg, black, black 49.5%, white 49.6%);
     transition: opacity 250ms 250ms, transform 400ms ease-in-out 300ms;
   }
 
-  .nav-video {
+  /* .nav-video {
     filter: blur(5px) invert(1);
-  }
+  } */
 
   .nav-link {
     font-family: 'Oswald', sans-serif;
     color: white;
-    line-height: 5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -70%);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    mix-blend-mode: difference;
+    padding: 0 40px;
+    border-radius: 10px;
+    transition: background-color 500ms ease-out, color 300ms;
   }
 
   .nav-link:hover {
-    color: white;
-    mix-blend-mode: difference;
+    background-color: white;
+    color: black;
   }
 
   #nav-toggle:checked ~ .nav-container {
     opacity: 1;
     transform: scale(1);
+  }
+
+  @media only screen and (min-width: 640px) {
+    .nav-link {
+      font-size: 4rem;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .nav-link {
+      font-size: 5rem;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .nav-link {
+      font-size: 7rem;
+    }
   }
 </style>
 
@@ -98,7 +122,7 @@
   }
 </script>
 
-<div class="absolute navigation">
+<div class="absolute navigation overflow-hidden">
   <input
     type="checkbox"
     class="hidden"
@@ -113,7 +137,7 @@
   </label>
 
   <nav class="nav-container" use:links>
-    <video
+    <!-- <video
       preload="metadata"
       autoplay
       loop
@@ -124,29 +148,11 @@
         src="https://res.cloudinary.com/padunk/video/upload/v1590331906/my_portfolio/video.mp4"
         type="video/mp4"
       />
-    </video>
-    <a
-      on:click="{handleToggleNavMenu}"
-      class="nav-link uppercase text-3xl -mt-16 sm:text-4xl lg:text-6xl
-      lg:-mt-24"
-      href="/"
-    >
-      HOME
-    </a>
-    <a
-      on:click="{handleToggleNavMenu}"
-      class="nav-link uppercase text-3xl whitespace-no-wrap sm:text-4xl
-      lg:text-6xl"
-      href="/other"
-    >
+    </video> -->
+    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/">HOME</a>
+    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/other">
       Other Projects
     </a>
-    <a
-      on:click="{handleToggleNavMenu}"
-      class="nav-link uppercase text-3xl mt-16 sm:text-4xl lg:text-6xl lg:mt-24"
-      href="/about"
-    >
-      About
-    </a>
+    <a on:click="{handleToggleNavMenu}" class="nav-link" href="/about">About</a>
   </nav>
 </div>

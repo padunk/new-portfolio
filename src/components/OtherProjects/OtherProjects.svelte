@@ -1,88 +1,156 @@
 <style>
-  .background-video {
-    filter: grayscale(100%);
+  .other-container {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    min-width: 101vw;
+    min-height: 101vh;
+  }
+
+  .screen-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    padding-bottom: 40px;
   }
 
   .mr-screen {
-    height: 45vh;
-    width: 45vh;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     gap: 3px;
     overflow: hidden;
-    position: relative;
-    z-index: 10;
-    background-color: black;
-    box-shadow: 0 0 0 6px black, 0 0 0 25px hsla(0, 0%, 80%, 0.7);
-  }
-
-  @media only screen and (min-width: 640px) {
-    .mr-screen {
-      height: 60vh;
-      width: 60vh;
-      gap: 5px;
-      box-shadow: 0 0 0 10px black, 0 0 0 40px hsla(0, 0%, 80%, 0.7);
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    .mr-screen {
-      height: 90vh;
-      width: 90vh;
-      gap: 5px;
-      box-shadow: 0 0 0 10px black, 0 0 0 40px hsla(0, 0%, 80%, 0.7);
-    }
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px black, 0 0 0 30px grey;
+    width: 100%;
   }
 
   .wrapper {
-    perspective: 1000px;
-  }
-
-  .flipper {
-    will-change: transform;
-    transition: transform 800ms ease-out;
-    transition-delay: 50ms;
-    transform-style: preserve-3d;
-  }
-
-  .wrapper .flipper {
-    transform-origin: center;
+    perspective: 5000px;
   }
 
   .front,
   .back {
     backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-position: top center;
     background-size: contain;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-repeat: no-repeat;
   }
-
+  .front {
+    transform: rotateY(0deg);
+    z-index: 2;
+  }
   .back {
     transform: rotateY(180deg);
   }
+  .flipper {
+    transition: 0.6s;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+  .wrapper .flipper {
+    transform-origin: center;
+  }
+
+  .wrapper .flipper-title {
+    transform-origin: left;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+  }
+
+  .chevron {
+    stroke: #aaa;
+    cursor: pointer;
+    transition: all 300ms;
+  }
+
+  .chevron:hover {
+    stroke: hsl(330, 100%, 50%);
+  }
+
+  .chevron:hover.prev {
+    transform: translateX(-5px) scale(1.1);
+  }
+
+  .chevron:hover.next {
+    transform: translateX(5px) scale(1.1);
+  }
 
   .title {
-    font-family: 'Oswald', sans-serif;
-    height: 50%;
-    border-style: none;
-    border-left: 4px solid #f56565;
+    height: 200px;
+    width: 33%;
+    font-size: 1.5rem;
   }
 
-  .controls > div {
-    cursor: pointer;
+  .front-title,
+  .back-title {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .front-title {
+    transform: rotateY(0deg);
+    z-index: 2;
+  }
+  .back-title {
+    transform: rotateY(180deg) translateX(100%);
   }
 
-  .chevron > svg {
-    stroke: #888;
-    transition: stroke 300ms;
+  @media only screen and (min-width: 640px) {
+    .other-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .screen-wrapper {
+      margin-top: 0;
+      padding-bottom: 0;
+      order: 2;
+    }
+
+    .mr-screen {
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(9, 1fr);
+      gap: 5px;
+      margin-right: -180px;
+    }
+
+    .title {
+      height: auto;
+      width: auto;
+      order: 1;
+    }
+
+    .front-title,
+    .back-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .controls {
+      flex-direction: column;
+      align-items: flex-start;
+      order: 2;
+      margin-right: 20px;
+    }
   }
 
-  .chevron:hover > svg {
-    stroke: hsl(330, 100%, 50%);
-    transform: scale(1.1);
+  @media only screen and (min-width: 1280px) {
+    .title {
+      font-size: 2.5rem;
+    }
+
+    .controls {
+      margin-right: 40px;
+    }
   }
 </style>
 
@@ -90,8 +158,9 @@
   import { onMount } from 'svelte';
   import { gsap } from 'gsap';
 
-  export let others;
-  const children = Array.from({ length: 81 }, (_, i) => i);
+  export let otherProjects;
+  const gridSize = window.innerWidth < 640 ? 25 : 81;
+  const children = Array.from({ length: gridSize }, (_, i) => i);
   const rotateDeg = 180;
 
   let backTitle, frontTitle;
@@ -109,32 +178,19 @@
     backElement = document.querySelectorAll('.back');
 
     setImageAndTitle(isShowingFront, projectIndex);
-
-    gsap.set('.invisible', { autoAlpha: 1 });
-    gsap
-      .timeline()
-      .from('.mr-screen', {
-        yPercent: -120,
-        duration: 4,
-        delay: 0.5,
-        ease: 'expo.out'
-      })
-      .from('.title', { opacity: 0, rotateY: 180, duration: 1 }, '-=2.5')
-      .from(
-        '.chevron',
-        { opacity: 0, xPercent: 100, duration: 0.8, stagger: 0.3 },
-        '<0.5'
-      );
+    handleResize();
   });
 
   function setImageAndTitle(isFront, idx) {
     const titleString = `
       <a href="${
-        others[idx].url
+        otherProjects[idx].url
       }" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-white transition-colors duration-300">
-        <h3 class="pl-4">
-          <p class='m-0 leading-tight'>${others[idx].title.split(' ')[0]}</p>
-          <p class='m-0 leading-tight'>${others[idx].title
+        <h3 class="pl-2 border-l-4 border-red-500">
+          <p class='m-0 leading-tight'>${
+            otherProjects[idx].title.split(' ')[0]
+          }</p>
+          <p class='m-0 leading-tight'>${otherProjects[idx].title
             .split(' ')
             .slice(1)
             .join(' ')}</p>
@@ -145,14 +201,14 @@
     if (!isFront) {
       backElement.forEach(
         back =>
-          (back.style.backgroundImage = `url(${others[idx].imgPath}.${others[idx].imgType})`)
+          (back.style.backgroundImage = `url(${otherProjects[idx].imgPath}.${otherProjects[idx].imgType})`)
       );
 
       backTitle = titleString;
     } else {
       frontElement.forEach(
         front =>
-          (front.style.backgroundImage = `url(${others[idx].imgPath}.${others[idx].imgType})`)
+          (front.style.backgroundImage = `url(${otherProjects[idx].imgPath}.${otherProjects[idx].imgType})`)
       );
 
       frontTitle = titleString;
@@ -160,7 +216,7 @@
   }
 
   function handleProjectSlide(event, type) {
-    const len = others.length;
+    const len = otherProjects.length;
     let imageIndex;
     isShowingFront = !isShowingFront;
     projectIndex = type === 'next' ? projectIndex + 1 : projectIndex - 1;
@@ -177,53 +233,63 @@
       flip.style.transform = `rotateY(${rotation}deg)`;
     });
   }
+
+  let mrScreen;
+  function handleResize() {
+    const max = Math.max(window.innerHeight, window.innerWidth);
+    const min = Math.min(window.innerHeight, window.innerWidth);
+    const scale = max / min < 1.4 ? 0.6 : 0.8;
+    const minSize = min * scale;
+    
+    mrScreen.style.width = minSize + 'px';
+    mrScreen.style.height = minSize + 'px';
+  }
 </script>
 
-<div
-  class="bg-black text-white flex justify-center items-center min-h-screen
-  min-w-full invisible"
->
-  <div
-    class="absolute inset-0 w-screen h-screen overflow-hidden background-video"
-  >
-    <video autoplay muted loop class="w-full h-full object-cover">
-      <!-- <source src="/media/examples/flower.webm" type="video/webm" /> -->
-      <source src="https://res.cloudinary.com/padunk/video/upload/v1590378881/my_portfolio/Pexels_Videos_2421545_fncd7j.mp4" type="video/mp4" />
-    </video>
-  </div>
-  <div class="rounded-full -mt-16 mr-screen lg:mt-0">
-    {#each children as child, i}
-      <div class="w-full h-full wrapper">
-        <div class="w-full h-full relative flipper">
-          <div class="absolute inset-0 w-full h-full front z-10"></div>
-          <div class="absolute inset-0 w-full h-full back"></div>
-        </div>
-      </div>
-    {/each}
-  </div>
+<svelte:window on:resize="{handleResize}" />
 
-  <div
-    class="absolute left-0 bottom-0 text-3xl flex title -mb-24 lg:mb-4
-    lg:text-5xl"
-  >
-    <div class="w-full h-full wrapper">
-      <div class="w-full h-full relative flipper">
-        <div class="absolute inset-0 w-full h-full front z-10">
-          {@html frontTitle}
+<div class="other-container">
+
+  <!-- <div class="absolute inset-0 overflow-hidden background-video hidden">
+    <video autoplay muted loop class="w-full h-full object-cover">
+      <source
+        src="https://res.cloudinary.com/padunk/video/upload/v1590378881/my_portfolio/Pexels_Videos_2421545_fncd7j.webm"
+        type="video/webm"
+      />
+      <source
+        src="https://res.cloudinary.com/padunk/video/upload/v1590378881/my_portfolio/Pexels_Videos_2421545_fncd7j.mp4"
+        type="video/mp4"
+      />
+    </video>
+  </div> -->
+
+  <div class="screen-wrapper">
+    <div class="mr-screen" bind:this="{mrScreen}">
+      {#each children as child, i}
+        <div class="w-full h-full wrapper">
+          <div class="w-full h-full relative flipper">
+            <div class="absolute inset-0 w-full h-full front z-10"></div>
+            <div class="absolute inset-0 w-full h-full back"></div>
+          </div>
         </div>
-        <div class="absolute inset-0 w-full h-full back">
-          {@html backTitle}
-        </div>
-      </div>
+      {/each}
     </div>
   </div>
 
-  <div
-    class="absolute bottom-0 right-0 mb-32 flex flex-row-reverse controls
-    sm:mb-24 sm:mr-8 lg:block lg:mb-48 lg:mr-16 lg:right-0"
-  >
+  <div class="controls">
     <div
-      class="w-10 h-10 lg:w-20 lg:h-20 mb-2 chevron"
+      class="w-10 h-10 md:w-16 md:h-16 chevron prev"
+      on:click="{e => handleProjectSlide(e, 'prev')}"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <polyline
+          points="328 112 184 256 328 400"
+          style="fill:none;stroke-linecap:square;stroke-miterlimit:10;stroke-width:48px"
+        ></polyline>
+      </svg>
+    </div>
+    <div
+      class="w-10 h-10 md:w-16 md:h-16 mb-2 chevron next"
       on:click="{e => handleProjectSlide(e, 'next')}"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -233,17 +299,18 @@
         ></polyline>
       </svg>
     </div>
+  </div>
 
-    <div
-      class="w-10 h-10 lg:w-20 lg:h-20 chevron"
-      on:click="{e => handleProjectSlide(e, 'prev')}"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <polyline
-          points="328 112 184 256 328 400"
-          style="fill:none;stroke-linecap:square;stroke-miterlimit:10;stroke-width:48px"
-        ></polyline>
-      </svg>
+  <div class="title">
+    <div class="w-full h-full wrapper">
+      <div class="w-full h-full relative flipper flipper-title">
+        <div class="absolute inset-0 w-full h-full z-10 front-title">
+          {@html frontTitle}
+        </div>
+        <div class="absolute inset-0 w-full h-full back-title">
+          {@html backTitle}
+        </div>
+      </div>
     </div>
   </div>
 </div>

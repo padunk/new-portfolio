@@ -1,18 +1,33 @@
 <style>
+  .grid-container {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  .title-wrapper {
+    display: flex;
+    align-items: flex-end;
+  }
+
   .my-name {
     font-size: 4rem;
     font-family: 'Oswald', sans-serif;
+    line-height: 1;
+  }
+
+  .second-word {
+    transform: translateX(22px);
+    margin-top: -16px;
   }
 
   @media only screen and (min-width: 640px) {
-    .my-name {
-      font-size: 8rem;
+    .grid-container {
+      grid-template-columns: repeat(2, minmax(150px, auto));
     }
-  }
-
-  @media only screen and (min-width: 768px) {
     .my-name {
-      font-size: 16rem;
+      font-size: 22vw;
     }
   }
 </style>
@@ -30,8 +45,8 @@
   export let name;
 
   onMount(() => {
-    gsap.set('.invisible', { autoAlpha: 1 });
-    gsap.from('p', {
+    const timeline = gsap.timeline();
+    timeline.from(['.first-word', '.second-word'], {
       text: '$#%*',
       opacity: 0,
       x: 200,
@@ -40,27 +55,19 @@
       delay: 0.5,
       ease: 'power1.in'
     });
+    timeline.to(['.second-word'], {
+      x: 22
+    });
   });
 </script>
 
-<div
-  class="border-red-500 border-l-8 w-screen h-screen relative bg-black invisible"
->
-
-  <div class="md:absolute inset-0 text-white font-extrabold uppercase pt-16">
+<div class="grid-container border-l-8 border-red-500">
+  <div class="text-white font-extrabold uppercase title-wrapper pb-8">
     <h1 class="my-name">
-      <p data-first-slice="ABR">{name.slice(0, 3)}</p>
-      <p
-        class="-mt-12 transform translate-x-4 md:-mt-48 md:translate-x-12
-        lg:translate-x-24"
-        data-second-slice="AHAM"
-      >
-        {name.slice(3, 7)}
-      </p>
+      <p class="first-word" data-first-slice="ABR">{name.slice(0, 3)}</p>
+      <p class="second-word" data-second-slice="AHAM">{name.slice(3, 7)}</p>
     </h1>
   </div>
-
   <SocmedIcons />
-
   <AboutSlide />
 </div>

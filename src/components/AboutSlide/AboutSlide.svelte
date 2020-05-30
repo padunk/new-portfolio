@@ -1,25 +1,22 @@
 <style>
   .about-detail {
-    border-bottom-left-radius: 200px;
-    transform: translateX(90vw);
-    transition: transform 1000ms cubic-bezier(0.42, 1.04, 0.48, 1.16);
+    border-bottom-left-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 101vh;
+    width: 101vw;
+    transform: translateX(70%);
+    transition: transform 1000ms cubic-bezier(0.42, 1.04, 0.48, 1.16),
+      padding-left 500ms;
+    padding-left: 30%;
+    padding-right: 40px;
   }
 
-  .about-detail:hover {
-    transform: translateX(10vw);
-  }
-
-  @media only screen and (min-width: 768px) {
-    .about-detail:hover {
-      transform: translateX(20vw);
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    .about-detail {
-      border-bottom-left-radius: 0;
-      transform: translateX(95vw);
-    }
+  .about-detail:hover,
+  .about-detail:active {
+    transform: translateX(20%);
+    padding-left: 40px;
   }
 
   .cert-link:link,
@@ -32,6 +29,20 @@
   .cert-link:hover,
   .cert-link:active {
     color: white;
+  }
+
+  @media only screen and (min-width: 640px) {
+    .about-detail {
+      transform: translateX(85%);
+      padding-left: 15%;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .about-detail {
+      transform: translateX(90%);
+      padding-left: 10%;
+    }
   }
 </style>
 
@@ -68,7 +79,7 @@
   const flyIn = { x: 500, delay: 550, duration: 1500, easing: expoOut };
   const fadeOut = { duration: 500 };
   const sectionClass =
-    'h-full flex flex-col justify-center pl-12 pr-10 transition-all sm:pl-16 md:pl-20 lg:text-lg';
+    'h-full flex flex-col justify-center lg:text-lg';
 
   function nextSlide(event) {
     slideNo += 1;
@@ -95,10 +106,7 @@
   }
 </script>
 
-<div
-  class="h-screen bg-red-800 transform absolute inset-0 w-screen about-detail
-  text-gray-500 z-20"
->
+<div class="bg-red-800 text-gray-500 about-detail">
   {#if slideNo === 0}
     <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
       <div class="w-4/5 max-w-lg flex flex-col">
@@ -124,7 +132,7 @@
     </section>
   {:else if slideNo === 1}
     <section in:fly="{flyIn}" out:fade="{fadeOut}" class="{sectionClass}">
-      <div class="sm:w-4/5 max-w-lg flex flex-col">
+      <div class="w-4/5 max-w-md">
         <h2 class="mb-2 font-bold">My web stacks:</h2>
         <div class="flex">
           <ul class="mb-2 lg:mr-8">
@@ -148,7 +156,7 @@
           {#if showLinkScreenshot}
             <div
               in:fly="{{ y: 500, duration: 1000, delay: 50 }}"
-              out:fly="{{ x: 1000, opacity: 0, duration: 500, delay: 50 }}"
+              out:fade
               class="w-full h-auto bg-contain bg-no-repeat bg-center"
               style="background-image: {linkBG}"
             ></div>

@@ -1,4 +1,10 @@
 <style>
+  .svg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
   svg {
     width: 2rem;
     height: 2rem;
@@ -10,13 +16,17 @@
     fill: white;
     transform: translate3D(-2px, -5px, 0);
   }
+
+  @media only screen and (min-width: 640px) {
+    .svg-container {
+      align-items: flex-start;
+    }
+  }
 </style>
 
 <script>
   import { onMount } from 'svelte';
   import { gsap } from 'gsap';
-
-  let svgWrapperClass = 'mb-4 svg-wrapper';
 
   onMount(() => {
     gsap.from('.svg-wrapper', {
@@ -30,11 +40,8 @@
   });
 </script>
 
-<div
-  class="w-full flex flex-col items-center pl-16 sm:w-4/5 max-w-3xl sm:flex-row
-  sm:justify-around sm:pl-0 sm:pr-16 md:pt-24 md:relative md:z-10"
->
-  <div class="{svgWrapperClass}">
+<div class="svg-container">
+  <div class="svg-wrapper">
     <a href="mailto:abraham.agel@outlook.com">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <path
@@ -48,7 +55,7 @@
     </a>
   </div>
 
-  <div class="{svgWrapperClass}">
+  <div class="svg-wrapper">
     <a href="https://github.com/padunk">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.3 35.3">
         <path
@@ -78,7 +85,7 @@
     </a>
   </div>
 
-  <div class="{svgWrapperClass}">
+  <div class="svg-wrapper">
     <a href="https://linkedin.com/in/abrahamanakagung">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <path
@@ -95,7 +102,7 @@
     </a>
   </div>
 
-  <div class="{svgWrapperClass}">
+  <div class="svg-wrapper">
     <a href="https://codepen.io/padunk">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +123,7 @@
     </a>
   </div>
 
-  <div class="{svgWrapperClass}">
+  <div class="svg-wrapper">
     <a href="https://twitter.com/anakagungcorp">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <path
