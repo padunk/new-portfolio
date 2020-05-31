@@ -1,9 +1,15 @@
 <style>
   .other-container {
-    display: grid;
-    grid-template-rows: repeat(3, auto);
+    display: flex;
+    flex-direction: column;
     min-width: 101vw;
     min-height: 101vh;
+  }
+
+  .main-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
   }
 
   .screen-wrapper {
@@ -12,6 +18,9 @@
     align-items: center;
     margin-top: 100px;
     padding-bottom: 40px;
+    flex: 2;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .mr-screen {
@@ -36,9 +45,8 @@
     top: 0;
     left: 0;
     background-attachment: fixed;
-    background-position: top center;
+    background-position: -80px;
     background-size: contain;
-    background-repeat: no-repeat;
   }
   .front {
     transform: rotateY(0deg);
@@ -84,9 +92,8 @@
   }
 
   .title {
-    height: 200px;
-    width: 33%;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    flex: 1;
   }
 
   .front-title,
@@ -106,8 +113,14 @@
 
   @media only screen and (min-width: 640px) {
     .other-container {
-      display: flex;
+      flex-direction: row;
       justify-content: space-between;
+    }
+
+    .main-wrapper {
+      order: 2;
+      flex: 2;
+      flex-direction: row;
     }
 
     .screen-wrapper {
@@ -120,7 +133,6 @@
       grid-template-columns: repeat(9, 1fr);
       grid-template-rows: repeat(9, 1fr);
       gap: 5px;
-      margin-right: -180px;
     }
 
     .title {
@@ -240,7 +252,7 @@
     const min = Math.min(window.innerHeight, window.innerWidth);
     const scale = max / min < 1.4 ? 0.6 : 0.8;
     const minSize = min * scale;
-    
+
     mrScreen.style.width = minSize + 'px';
     mrScreen.style.height = minSize + 'px';
   }
@@ -263,41 +275,43 @@
     </video>
   </div> -->
 
-  <div class="screen-wrapper">
-    <div class="mr-screen" bind:this="{mrScreen}">
-      {#each children as child, i}
-        <div class="w-full h-full wrapper">
-          <div class="w-full h-full relative flipper">
-            <div class="absolute inset-0 w-full h-full front z-10"></div>
-            <div class="absolute inset-0 w-full h-full back"></div>
+  <div class="main-wrapper">
+    <div class="screen-wrapper">
+      <div class="mr-screen" bind:this="{mrScreen}">
+        {#each children as child, i}
+          <div class="w-full h-full wrapper">
+            <div class="w-full h-full relative flipper">
+              <div class="absolute inset-0 w-full h-full front z-10"></div>
+              <div class="absolute inset-0 w-full h-full back"></div>
+            </div>
           </div>
-        </div>
-      {/each}
+        {/each}
+      </div>
     </div>
-  </div>
 
-  <div class="controls">
-    <div
-      class="w-10 h-10 md:w-16 md:h-16 chevron prev mb-2"
-      on:click="{e => handleProjectSlide(e, 'prev')}"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <polyline
-          points="328 112 184 256 328 400"
-          style="fill:none;stroke-linecap:square;stroke-miterlimit:10;stroke-width:48px"
-        ></polyline>
-      </svg>
-    </div>
-    <div
-      class="w-10 h-10 md:w-16 md:h-16 chevron next"
-      on:click="{e => handleProjectSlide(e, 'next')}"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <polyline
-          points="184 112 328 256 184 400"
-          style="fill:none;stroke-linecap:square;stroke-miterlimit:10;stroke-width:48px"
-        ></polyline>
-      </svg>
+    <div class="controls">
+      <div
+        class="w-10 h-10 md:w-16 md:h-16 chevron prev mb-2"
+        on:click="{e => handleProjectSlide(e, 'prev')}"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <polyline
+            points="328 112 184 256 328 400"
+            style="fill:none;stroke-linecap:square;stroke-miterlimit:10;stroke-width:48px"
+          ></polyline>
+        </svg>
+      </div>
+      <div
+        class="w-10 h-10 md:w-16 md:h-16 chevron next"
+        on:click="{e => handleProjectSlide(e, 'next')}"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <polyline
+            points="184 112 328 256 184 400"
+            style="fill:none;stroke-linecap:square;stroke-miterlimit:10;stroke-width:48px"
+          ></polyline>
+        </svg>
+      </div>
     </div>
   </div>
 
