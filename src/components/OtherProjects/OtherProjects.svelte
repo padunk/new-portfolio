@@ -191,6 +191,26 @@
 
     setImageAndTitle(isShowingFront, projectIndex);
     handleResize();
+
+    let animation = gsap.timeline();
+    animation.from('.main-wrapper', {
+      yPercent: -100,
+      opacity: 0,
+      delay: 0.5,
+      ease: 'back',
+      duration: 2
+    });
+
+    animation.from(
+      '.title',
+      {
+        xPercent: -100,
+        opacity: 0,
+        ease: 'power.in',
+        duration: 0.8,
+      },
+      '<0.2'
+    );
   });
 
   function setImageAndTitle(isFront, idx) {
