@@ -88,6 +88,7 @@
   import { onMount, beforeUpdate } from 'svelte';
   import normalizeWheel from 'normalize-wheel';
   import { gsap } from 'gsap';
+  import Hammer from '../../Hammer'
 
   export let name;
   export let projects;
@@ -116,6 +117,9 @@
       })
       .from('.title', { opacity: 0 }, '-=0.2')
       .from('.description', { opacity: 0, duration: 1 });
+    
+    let hammer = new Hammer(document.querySelector('.hammer-time'))
+    hammer.on('pan', handleWheel)
   });
 
   beforeUpdate(() => {
@@ -175,7 +179,7 @@
 <svelte:window on:wheel="{handleWheel}" on:resize="{handleResize}" />
 
 <h1 class="hidden">{name}</h1>
-<section class=" w-screen h-screen relative invisible">
+<section class=" w-screen h-screen relative invisible hammer-time">
   {#each projects as project, i (project.title)}
     <div
       class="w-screen h-screen absolute inset-0 transition-all duration-1000
