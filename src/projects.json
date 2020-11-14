@@ -2,6 +2,49 @@
 
   { 
 
+    "title":"Our Whispers",
+    "description":"An application wouldn't complete without 'Stories'",
+    "tech":[
+      "ReactJS",
+      "Redux",
+      "TypeScript",
+      "Tailwind",
+      "Firebase",
+      "Formik",
+      "Yup",
+      "Express"
+    ],
+    "imgPath":"/assets/images/our_whispers",
+    "imgType":"png",
+    "videoPath":"https://res.cloudinary.com/padunk/video/upload/v1590378827/my_portfolio/our_whispers_zojlu9.mp4",
+    "videoType":"mp4",
+    "alt":"our whispers app screenshot",
+    "url":"https://fade-to-black-f3f53.web.app/",
+    "color":"#8b5d3f"
+  },
+  { 
+
+    "title":"Capchiq",
+    "description":"Only fans clone in React Native",
+    "tech":[ 
+
+      "ReactJS",
+      "React Native",
+      "TypeScript",
+      "Formik",
+      "Yup",
+      "Firebase"
+    ],
+    "imgPath":"/assets/images/capchiq",
+    "imgType":"png",
+    "videoPath":"https://res.cloudinary.com/padunk/video/upload/v1590378827/my_portfolio/one_hundred_days_tracker_nmamjc.mp4",
+    "videoType":"mp4",
+    "alt":"capchiq app screenshot",
+    "url":"",
+    "color":"#CB6BD6"
+  },
+  { 
+
     "title":"100Days Tracker App",
     "description":"An application to tracked your #100DaysOfSomething.",
     "tech":[ 
@@ -74,40 +117,5 @@
     "alt":"reddit clone app screenshot",
     "url":"https://react-redux-readable.web.app/",
     "color":"#00ced1"
-  },
-  { 
-
-    "title":"Weather App",
-    "description":"A weather prediction application for cities around the world",
-    "tech":[ 
-
-      "ReactJS",
-      "Weather API"
-    ],
-    "imgPath":"/assets/images/react_weather_app",
-    "imgType":"png",
-    "videoPath":"https://res.cloudinary.com/padunk/video/upload/v1590378818/my_portfolio/react_weather_app_e9atiu.mp4",
-    "videoType":"mp4",
-    "alt":"react weather app screenshot",
-    "url":"https://react-weather-api.firebaseapp.com/",
-    "color":"#f25c49"
-  },
-  { 
-
-    "title":"Pomodoro Clock",
-    "description":"Simple Pomodoro clock application",
-    "tech":[ 
-
-      "ReactJS",
-      "HTML Canvas",
-      "Codepen"
-    ],
-    "imgPath":"/assets/images/pomodoro_clock",
-    "imgType":"png",
-    "videoPath":"https://res.cloudinary.com/padunk/video/upload/v1590378815/my_portfolio/pomodoro_clock_upjlgj.mp4",
-    "videoType":"mp4",
-    "alt":"book markdown reader app screenshot",
-    "url":"https://codepen.io/padunk/full/awWEPY",
-    "color":"#db8c0a"
   }
 ]
