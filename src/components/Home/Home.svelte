@@ -216,7 +216,7 @@
     {#each projects as pro, index (pro.title)}
       <div
         class="absolute transition-all duration-500 pt-16 h-full rounded-full
-        md:pt-20"
+        md:p-10 flex justify-center items-center flex-col"
         style="{`transform: translateX(${(idx - index) * circleXOffset}rem); background-color: ${pro.color + alpha}`}"
       >
         <div class="block lg:hidden">
@@ -225,7 +225,7 @@
           </a>
         </div>
 
-        <div class="pb-1 pl-2">{pro.description}</div>
+        <div class="pb-1 pl-2 text-center">{pro.description}</div>
 
         <div class="pl-4">
           <span>Made with:</span>
