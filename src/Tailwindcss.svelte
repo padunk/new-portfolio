@@ -1,7 +1,7 @@
 <style global>
   @tailwind base;
   body {
-    @apply p-0 overflow-hidden m-0 bg-black box-border max-h-screen max-w-full subpixel-antialiased font-body;
+    @apply p-0 m-0 bg-black box-border max-h-screen max-w-full subpixel-antialiased font-body overflow-x-hidden;
   }
 
   blockquote,

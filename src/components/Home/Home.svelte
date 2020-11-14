@@ -236,7 +236,7 @@
   </section>
   <!-- why the class directive is creating a bug here? class:active="{videoPlay}" -->
   <div
-    class="hidden w-screen h-screen absolute z-20 flex items-center
+    class="hidden w-screen h-screen absolute z-20 items-center
     transition-all duration-200 lg:block opacity-0 delay-300"
     class:video-active="{videoPlay}"
     class:active="{videoPlay}"
