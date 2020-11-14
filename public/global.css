@@ -1,1 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Oswald:wght@700&display=swap');
+
+/* width */
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Track, Handle */
+body::-webkit-scrollbar-track,
+body::-webkit-scrollbar-thumb {
+  background: transparent;
+}
