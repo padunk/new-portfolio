@@ -215,7 +215,7 @@
   >
     {#each projects as pro, index (pro.title)}
       <div
-        class="absolute transition-all duration-500 pt-16 h-full rounded-full
+        class="absolute transition-all duration-500 h-full rounded-full
         md:p-10 flex justify-center items-center flex-col"
         style="{`transform: translateX(${(idx - index) * circleXOffset}rem); background-color: ${pro.color + alpha}`}"
       >

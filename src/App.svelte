@@ -40,7 +40,7 @@
 </script>
 
 <Tailwindcss />
-<main class="lg:overflow-hidden lg:overflow-x-hidden lg:overflow-y-hidden relative">
+<main class="relative">
   {#if completeLoadingAssets}
     <Routes {projects} {otherProjects} />
   {:else}
