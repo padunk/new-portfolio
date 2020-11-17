@@ -16,7 +16,8 @@
     'https://res.cloudinary.com/padunk/video/upload/v1590378827/my_portfolio/one_hundred_days_tracker_nmamjc.mp4',
     'https://res.cloudinary.com/padunk/video/upload/v1590378825/my_portfolio/reddit_clone-update_wsjttd.mp4',
     'https://res.cloudinary.com/padunk/video/upload/v1590378822/my_portfolio/2018_fifa_world_cup_elzxdh.mp4',
-    'https://res.cloudinary.com/padunk/video/upload/v1590378818/my_portfolio/our_whispers_zojlu9.mp4'
+    'https://res.cloudinary.com/padunk/video/upload/v1590378818/my_portfolio/our_whispers_zojlu9.mp4',
+    'https://res.cloudinary.com/padunk/video/upload/v1590378818/my_portfolio/capchiq_hmqn3b.mp4'
   ];
   projects.forEach(project => {
     allAssets.push(project.imgPath + '.' + project.imgType, project.videoPath);
@@ -40,7 +41,7 @@
 </script>
 
 <Tailwindcss />
-<main class="relative">
+<main class="overflow-hidden relative">
   {#if completeLoadingAssets}
     <Routes {projects} {otherProjects} />
   {:else}
