@@ -31,7 +31,7 @@
   "dependencies": {
     "capture-website": "^1.0.0",
     "classnames": "^2.2.6",
-    "gsap": "^3.3.1",
+    "gsap": "^3.6.0",
     "normalize-wheel": "^1.0.1",
     "preload-it": "^1.4.0",
     "sirv-cli": "^0.4.4"
